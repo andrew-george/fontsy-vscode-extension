@@ -16,7 +16,7 @@ A simple extension to control editor and terminal font sizes, weight and ligatur
 
 - Control font ligatures
 
-![Command Palette](assets/fontsy-command-palette.png)
+![Command Palette](assets/command-palette.png)
 
 ## Extension Settings
 
@@ -44,13 +44,13 @@ Settings can be added through settings.json
 
 or edited through settings
 
-![](assets/fontsy-settings.png)
+![](assets/settings.png)
 
 ## Keybindings
 
 Some commands are pre-assigned and some are not. You can edit and assign your keybindings (Ctrl+K Ctrl+S) of choice or use the commands from Command Pallete
 (Ctrl+Shift+P)
-![](assets/fontsy-keybindings.png)
+![](assets/keybindings.png)
 
 ## Known Issues
 
