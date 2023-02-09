@@ -1,0 +1,166 @@
+{
+	"name": "fontsy",
+	"displayName": "Fontsy",
+	"description": "A simple extension to control editor and terminal font sizes, weight and ligatures",
+	"version": "1.0.0",
+	"publisher": "andrewberty",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/andrew-george/fontsy-vscode-extension"
+	},
+	"icon": "assets/fontsy-logo.png",
+	"engines": {
+		"vscode": "^1.75.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:fontsy.increaseEditorFontSize",
+		"onCommand:fontsy.decreaseEditorFontSize",
+		"onCommand:fontsy.resetEditorFontSize",
+		"onCommand:fontsy.increaseTerminalFontSize",
+		"onCommand:fontsy.decreaseTerminalFontSize",
+		"onCommand:fontsy.resetTerminalFontSize",
+		"onCommand:fontsy.setStep",
+		"onCommand:fontsy.setDefaultEditorFontSize",
+		"onCommand:fontsy.setDefaultTerminalFontSize",
+		"onCommand:fontsy.setFontWeight",
+		"onCommand:fontsy.toggleFontLigatures",
+		"onCommand:fontsy.setEditorFontFamily",
+		"onCommand:fontsy.setTerminalFontFamily"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "fontsy.increaseEditorFontSize",
+				"title": "Fontsy: Increase Editor Font Size"
+			},
+			{
+				"command": "fontsy.decreaseEditorFontSize",
+				"title": "Fontsy: Decrease Editor Font Size"
+			},
+			{
+				"command": "fontsy.resetEditorFontSize",
+				"title": "Fontsy: Reset Editor Font Size"
+			},
+			{
+				"command": "fontsy.increaseTerminalFontSize",
+				"title": "Fontsy: Increase Terminal Font Size"
+			},
+			{
+				"command": "fontsy.decreaseTerminalFontSize",
+				"title": "Fontsy: Decrease Terminal Font Size"
+			},
+			{
+				"command": "fontsy.resetTerminalFontSize",
+				"title": "Fontsy: Reset Terminal Font Size"
+			},
+			{
+				"command": "fontsy.setStep",
+				"title": "Fontsy: Set Step"
+			},
+			{
+				"command": "fontsy.setDefaultEditorFontSize",
+				"title": "Fontsy: Set Default Editor Font Size"
+			},
+			{
+				"command": "fontsy.setDefaultTerminalFontSize",
+				"title": "Fontsy: Set Default Terminal Font Size"
+			},
+			{
+				"command": "fontsy.setFontWeight",
+				"title": "Fontsy: Set Font Weight"
+			},
+			{
+				"command": "fontsy.toggleFontLigatures",
+				"title": "Fontsy: Toggle Font Ligatures"
+			},
+			{
+				"command": "fontsy.setEditorFontFamily",
+				"title": "Fontsy: Set Editor Font Family"
+			},
+			{
+				"command": "fontsy.setTerminalFontFamily",
+				"title": "Fontsy: Set Terminal Font Family"
+			}
+		],
+		"configuration": {
+			"title": "Fontsy Configuration",
+			"properties": {
+				"fontsy.defaultEditorFontSize": {
+					"type": [
+						"number",
+						"null"
+					],
+					"description": "The default editor font size that is used on a font size reset",
+					"default": null
+				},
+				"fontsy.defaultTerminalFontSize": {
+					"type": [
+						"number",
+						"null"
+					],
+					"description": "The default terminal font size that is used on a font size reset",
+					"default": null
+				},
+				"fontsy.step": {
+					"type": "number",
+					"description": "The increment or decrement step for a font size change",
+					"default": 1
+				}
+			}
+		},
+		"keybindings": [
+			{
+				"command": "fontsy.increaseEditorFontSize",
+				"key": "ctrl+=",
+				"mac": "cmd+=",
+				"when": "editorFocus"
+			},
+			{
+				"command": "fontsy.decreaseEditorFontSize",
+				"key": "ctrl+-",
+				"mac": "cmd+-",
+				"when": "editorFocus"
+			},
+			{
+				"command": "fontsy.resetEditorFontSize",
+				"key": "ctrl+0",
+				"mac": "cmd+0",
+				"when": "editorFocus"
+			},
+			{
+				"command": "fontsy.increaseTerminalFontSize",
+				"key": "ctrl+=",
+				"mac": "cmd+=",
+				"when": "terminalFocus"
+			},
+			{
+				"command": "fontsy.decreaseTerminalFontSize",
+				"key": "ctrl+-",
+				"mac": "cmd+-",
+				"when": "terminalFocus"
+			},
+			{
+				"command": "fontsy.resetTerminalFontSize",
+				"key": "ctrl+0",
+				"mac": "cmd+0",
+				"when": "terminalFocus"
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint"
+	},
+	"devDependencies": {
+		"@types/glob": "^8.0.1",
+		"@types/node": "16.x",
+		"@types/vscode": "^1.75.0",
+		"eslint": "^8.33.0",
+		"glob": "^8.1.0",
+		"typescript": "^4.9.4"
+	}
+}
