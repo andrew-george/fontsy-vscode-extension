@@ -2,7 +2,7 @@
 	"name": "fontsy",
 	"displayName": "Fontsy",
 	"description": "A simple extension to control editor and terminal font sizes, weight and ligatures",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "andrewberty",
 	"repository": {
 		"type": "git",
