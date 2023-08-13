@@ -2,7 +2,7 @@
 	"name": "fontsy",
 	"displayName": "Fontsy",
 	"description": "A simple extension to control your fonts everywhere in vscode",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"publisher": "andrewberty",
 	"repository": {
 		"type": "git",
