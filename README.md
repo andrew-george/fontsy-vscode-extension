@@ -1,12 +1,12 @@
 # Fontsy
 
-A simple extension to control editor and terminal font sizes, weight and ligatures
+A simple extension to control your fonts everywhere in vscode
 
 ## Features
 
 - Control Editor Font Size
 
-- Control Terminal Font Size
+- Control Terminal Font **Size**
 
 - Setting a step setting for incrementing and decrementing
 
@@ -16,7 +16,9 @@ A simple extension to control editor and terminal font sizes, weight and ligatur
 
 - Control font ligatures
 
-![Command Palette](assets/command-palette.png)
+- Change VSCode UI font
+
+![Command Palette](<assets/command-palette(1.1.0).png>)
 
 ## Extension Settings
 
@@ -44,13 +46,13 @@ Settings can be added through settings.json
 
 or edited through settings
 
-![](assets/settings.png)
+![](<assets/settings(1.1.0).png>)
 
 ## Keybindings
 
 Some commands are pre-assigned and some are not. You can edit and assign your keybindings (Ctrl+K Ctrl+S) of choice or use the commands from Command Pallete
 (Ctrl+Shift+P)
-![](assets/keybindings.png)
+![](<assets/keybindings(1.1.0).png>)
 
 ## Known Issues
 
@@ -58,4 +60,7 @@ Some commands are pre-assigned and some are not. You can edit and assign your ke
 
 ---
 
-Inspired from [FontSize shortcuts](https://github.com/caaatisgood/vsc-fontsize-shortcuts) extension by [Hao-Ping](https://github.com/caaatisgood)
+### Credits
+
+- Inspired from [FontSize shortcuts](https://github.com/caaatisgood/vsc-fontsize-shortcuts) extension by [Hao-Ping](https://github.com/caaatisgood)
+- UI font family functionality [Fonted](https://github.com/blackmann/fonted) extension by [blackmann](https://github.com/blackmann)

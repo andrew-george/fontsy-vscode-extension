@@ -1,7 +1,7 @@
 {
 	"name": "fontsy",
 	"displayName": "Fontsy",
-	"description": "A simple extension to control editor and terminal font sizes, weight and ligatures",
+	"description": "A simple extension to control your fonts everywhere in vscode",
 	"version": "1.0.1",
 	"publisher": "andrewberty",
 	"repository": {
@@ -28,11 +28,16 @@
 		"onCommand:fontsy.setFontWeight",
 		"onCommand:fontsy.toggleFontLigatures",
 		"onCommand:fontsy.setEditorFontFamily",
-		"onCommand:fontsy.setTerminalFontFamily"
+		"onCommand:fontsy.setTerminalFontFamily",
+		"onCommand:fontsy.setUIFontFamily"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "fontsy.hello",
+				"title": "Fontsy: Hello"
+			},
 			{
 				"command": "fontsy.increaseEditorFontSize",
 				"title": "Fontsy: Increase Editor Font Size"
@@ -84,6 +89,10 @@
 			{
 				"command": "fontsy.setTerminalFontFamily",
 				"title": "Fontsy: Set Terminal Font Family"
+			},
+			{
+				"command": "fontsy.setUIFontFamily",
+				"title": "Fontsy: Set UI Font Family"
 			}
 		],
 		"configuration": {

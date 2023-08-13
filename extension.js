@@ -1,4 +1,6 @@
-const { commands, workspace, window } = require('vscode')
+const { commands, window, workspace } = require('vscode')
+const path = require('path')
+const fs = require('fs')
 
 const minFontSize = 1
 const maxFontSize = Number.MAX_SAFE_INTEGER
@@ -70,17 +72,7 @@ function activate(context) {
 
 	// font weight
 	let setFontWeight = commands.registerCommand('fontsy.setFontWeight', async () => {
-		const input = await window.showQuickPick([
-			'100',
-			'200',
-			'300',
-			'400 (Normal)',
-			'500',
-			'600 (Bold)',
-			'700',
-			'800',
-			'900',
-		])
+		const input = await window.showQuickPick(['100', '200', '300', '400', '500', '600', '700', '800', '900'])
 		if (!input) return
 		const config = workspace.getConfiguration()
 		return config.update('editor.fontWeight', input, true)
@@ -116,6 +108,25 @@ function activate(context) {
 		return config.update('terminal.integrated.fontFamily', input, true)
 	})
 
+	//UI Font
+	let setUIFontFamily = commands.registerCommand('fontsy.setUIFontFamily', async () => {
+		const font = await window.showInputBox()
+		if (!font) return
+
+		const basePath = path.dirname(require.main.filename)
+		const workbenchRelativePath = '/vs/code/electron-sandbox/workbench/workbench.html'
+		const workbenchPath = [basePath, workbenchRelativePath].join('')
+		const html = fs.readFileSync(workbenchPath, 'utf8')
+		const styleMarkup = `<style>
+			.mac, .windows, .linux {font-family: "${font}" !important;}
+			</style>`
+		if (html.includes(styleMarkup)) return
+		const newHtml = html.replace('</head>', styleMarkup + '</head>')
+		fs.writeFileSync(workbenchPath, newHtml)
+		window.showInformationMessage('Please reload window to apply UI font change !')
+		return
+	})
+
 	context.subscriptions.push(
 		increaseEditorFontSize,
 		decreaseEditorFontSize,
@@ -129,7 +140,8 @@ function activate(context) {
 		setFontWeight,
 		toggleFontLigatures,
 		setEditorFontFamily,
-		setTerminalFontFamily
+		setTerminalFontFamily,
+		setUIFontFamily
 	)
 }
 
