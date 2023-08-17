@@ -108,36 +108,52 @@ function activate(context) {
 		return config.update('terminal.integrated.fontFamily', input, true)
 	})
 
-	//UI Font
-	let setUIFontFamily = commands.registerCommand('fontsy.setUIFontFamily', async () => {
-		const font = await window.showInputBox()
-		if (!font) return
-
+	// UI
+	async function patchUIFont(styleMarkup, regex) {
 		const basePath = path.dirname(require.main.filename)
 		const workbenchRelativePath = '/vs/code/electron-sandbox/workbench/workbench.html'
 		const workbenchPath = [basePath, workbenchRelativePath].join('')
 		const html = fs.readFileSync(workbenchPath, 'utf8')
-		const styleMarkup = `<style>
-			.mac, .windows, .linux {font-family: "${font}" !important;}
-			</style>`
 
 		let newHtml = ''
 
-		const matchBySelectorRegex = /<style[^>]*>(?=[\s\S]*\.mac)(?=[\s\S]*\.windows)(?=[\s\S]*\.linux)[\s\S]*?<\/style>/gm
-		const matchByStyleTagBlockRegex = /<style[^>]*>([\s\S]*?)<\/style>/gm
-
-		/**
-		 * If our style tag that include .mac .windows .linux selectors already exist => replace it
-		 * If It doesn't, inject it into workbench.html file
-		 */
-		if (html.match(matchBySelectorRegex)) {
-			newHtml = html.replace(matchByStyleTagBlockRegex, styleMarkup)
+		if (html.match(regex)) {
+			newHtml = html.replace(regex, styleMarkup)
 		} else {
 			newHtml = html.replace('</head>', styleMarkup + '</head>')
 		}
 
 		fs.writeFileSync(workbenchPath, newHtml)
 		window.showInformationMessage('Please reload window to apply UI font change !')
+	}
+
+	//UI Font Family
+	let setUIFontFamily = commands.registerCommand('fontsy.setUIFontFamily', async () => {
+		const font = await window.showInputBox()
+		if (!font) return
+
+		const styleMarkup = `<style>
+			.mac, .windows, .linux {font-family: "${font}" !important;}
+			</style>`
+
+		const fontFamilyRegex = /<style[^>]*>(?=[\s\S]*\.mac)(?=[\s\S]*\.windows)(?=[\s\S]*\.linux)[\s\S]*?<\/style>/gm
+
+		patchUIFont(styleMarkup, fontFamilyRegex)
+		return
+	})
+
+	//UI Font Weight
+	let setUIFontWeight = commands.registerCommand('fontsy.setUIFontWeight', async () => {
+		const weight = await window.showQuickPick(['100', '200', '300', '400', '500', '600', '700', '800', '900'])
+		if (!weight) return
+
+		const styleMarkup = `<style>
+			.mac, .windows, .linux {font-weight: ${weight} !important;}
+			</style>`
+
+		const fontWeightRegex = /<style[^>]*>(?=[\s\S]*\.mac)(?=[\s\S]*\.windows)(?=[\s\S]*\.linux)[\s\S]*?<\/style>/gm
+
+		patchUIFont(styleMarkup, fontWeightRegex)
 		return
 	})
 
@@ -155,7 +171,8 @@ function activate(context) {
 		toggleFontLigatures,
 		setEditorFontFamily,
 		setTerminalFontFamily,
-		setUIFontFamily
+		setUIFontFamily,
+		setUIFontWeight
 	)
 }
 

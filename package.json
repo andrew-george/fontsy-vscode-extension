@@ -29,15 +29,12 @@
 		"onCommand:fontsy.toggleFontLigatures",
 		"onCommand:fontsy.setEditorFontFamily",
 		"onCommand:fontsy.setTerminalFontFamily",
-		"onCommand:fontsy.setUIFontFamily"
+		"onCommand:fontsy.setUIFontFamily",
+		"onCommand:fontsy.setUIFontWeight"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
-			{
-				"command": "fontsy.hello",
-				"title": "Fontsy: Hello"
-			},
 			{
 				"command": "fontsy.increaseEditorFontSize",
 				"title": "Fontsy: Increase Editor Font Size"
@@ -93,6 +90,10 @@
 			{
 				"command": "fontsy.setUIFontFamily",
 				"title": "Fontsy: Set UI Font Family"
+			},
+			{
+				"command": "fontsy.setUIFontWeight",
+				"title": "Fontsy: Set UI Font Weight"
 			}
 		],
 		"configuration": {
