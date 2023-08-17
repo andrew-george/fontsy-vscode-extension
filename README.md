@@ -16,7 +16,9 @@ A simple extension to control your fonts everywhere in vscode
 
 - Control font ligatures
 
-- Change VSCode UI font
+- Change VSCode UI font family
+
+- Change VSCode UI font weight
 
 ![Command Palette](<assets/command-palette(1.1.0).png>)
 
