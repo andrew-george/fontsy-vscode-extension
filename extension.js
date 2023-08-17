@@ -136,7 +136,8 @@ function activate(context) {
 			.mac, .windows, .linux {font-family: "${font}" !important;}
 			</style>`
 
-		const fontFamilyRegex = /<style[^>]*>(?=[\s\S]*\.mac)(?=[\s\S]*\.windows)(?=[\s\S]*\.linux)[\s\S]*?<\/style>/gm
+		const fontFamilyRegex =
+			/<style>\s*\.mac,\s*\.windows,\s*\.linux\s*{\s*font-family\s*:\s*(.*)\s*;\s*}\s*<\/style>/gim
 
 		patchUIFont(styleMarkup, fontFamilyRegex)
 		return
@@ -151,7 +152,8 @@ function activate(context) {
 			.mac, .windows, .linux {font-weight: ${weight} !important;}
 			</style>`
 
-		const fontWeightRegex = /<style[^>]*>(?=[\s\S]*\.mac)(?=[\s\S]*\.windows)(?=[\s\S]*\.linux)[\s\S]*?<\/style>/gm
+		const fontWeightRegex =
+			/<style>\s*\.mac,\s*\.windows,\s*\.linux\s*{\s*font-weight\s*:\s*(.*)\s*;\s*}\s*<\/style>/gim
 
 		patchUIFont(styleMarkup, fontWeightRegex)
 		return
