@@ -120,8 +120,22 @@ function activate(context) {
 		const styleMarkup = `<style>
 			.mac, .windows, .linux {font-family: "${font}" !important;}
 			</style>`
-		if (html.includes(styleMarkup)) return
-		const newHtml = html.replace('</head>', styleMarkup + '</head>')
+
+		let newHtml = ''
+
+		const matchBySelectorRegex = /<style[^>]*>(?=[\s\S]*\.mac)(?=[\s\S]*\.windows)(?=[\s\S]*\.linux)[\s\S]*?<\/style>/gm
+		const matchByStyleTagBlockRegex = /<style[^>]*>([\s\S]*?)<\/style>/gm
+
+		/**
+		 * If our style tag that include .mac .windows .linux selectors already exist => replace it
+		 * If It doesn't, inject it into workbench.html file
+		 */
+		if (html.match(matchBySelectorRegex)) {
+			newHtml = html.replace(matchByStyleTagBlockRegex, styleMarkup)
+		} else {
+			newHtml = html.replace('</head>', styleMarkup + '</head>')
+		}
+
 		fs.writeFileSync(workbenchPath, newHtml)
 		window.showInformationMessage('Please reload window to apply UI font change !')
 		return
