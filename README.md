@@ -22,6 +22,25 @@ A simple extension to control your fonts everywhere in vscode
 
 ![Command Palette](<assets/command-palette(1.1.0).png>)
 
+
+## IMPORTANT for Linux
+
+When trying to change UI font family / weight, fontsy need a permission since it adds css rules in file called workbench.html.
+
+So, you must launch vscode as sudo (root user) everytime you want to change UI font family / weight.
+Or, execute that command in your terminal once, that will give vscode permissions to manipulate folder named code at /usr/share/code
+
+```shell
+sudo chown -R $(whoami) /usr/share/code
+```
+What it says
+- sudo : root user
+- chown : change ownership
+- -R : recursively
+- $(whoami) : is a variable with your name
+- /usr/share/code : path to change ownership to you so vscode can manipulate its files
+
+
 ## Extension Settings
 
 Settings can be added through settings.json
